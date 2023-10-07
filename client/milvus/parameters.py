@@ -134,8 +134,8 @@ class ParametersMilvus(ParametersBase):
         # generate vectors for recursive search
         vectors_len = len(search_vectors)
         lcm = self.least_common_multiple([nq, vectors_len])
-        search_vectors = search_vectors * int(lcm / vectors_len)
-
+        search_vectors = search_vectors.repeat(int(lcm / vectors_len), axis=0)
+        np.random.shuffle(search_vectors)
         other_params = {
             "nq": nq,
             "search_vectors": search_vectors

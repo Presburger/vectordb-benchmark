@@ -17,7 +17,7 @@ collection_params:
 # The following are the parameters used in concurrent
 concurrent_params:
   # Make sure the current machine resources are sufficient to start the number of processes
-  concurrent_number: 10  # Total concurrent
+  concurrent_number: 16  # Total concurrent
   # This tool is suitable for performance testing, please keep the concurrency within a reasonable range
   # total concurrent time = warm_time * 2 + during_time
   # The state that includes warmup time and the state that does not include warmup time will be printed separately in the end state
@@ -37,12 +37,12 @@ concurrent_tasks:
   - type: search
     weight: 1
     params:
-      nq: 1
-      top_k: 1
+      nq: 1000
+      top_k: 10
       search_param:
-        ef: 8
+        nprobe: 10
       timeout: 60
-#      search_vectors: "glove-25-angular.hdf5"
+      search_vectors: "gist-960-euclidean.hdf5"
 
       # If you select the hdf5 dataset, the vector in the `test` set will be used as the search vectors
       # If you remove the search_vectors field, the vectors will be randomly generated

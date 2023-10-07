@@ -15,10 +15,9 @@ insert_params:
 
 # Index parameters can be added dynamically
 index_params:
-  index_type: HNSW
+  index_type: GPU_IVF_FLAT
   index_param:
-    M: 8
-    efConstruction: 200
+    nlist: 1024
 
 # Load parameters can be added dynamically
 # example:
@@ -33,9 +32,9 @@ search_params:
 # The following three sets of parameters will be cross-combined,
 # and then the corresponding recall rate test will be carried out in turn.
   top_k: [10]
-  nq: [5000, 10000]
+  nq: [100]
   search_param:
-    ef: [16, 32]
+    nprobe: [5]
 
 # After that, you can choose the most appropriate search parameters for concurrency testing
 # and get the optimal QPS of the server
